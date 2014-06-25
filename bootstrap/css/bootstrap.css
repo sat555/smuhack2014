@@ -341,7 +341,7 @@ a:focus {
 }
 
 .offset12 {
-  margin-left: 980px;
+  margin-left: -60px;
 }
 
 .offset11 {
@@ -2846,6 +2846,10 @@ table th[class*="span"],
 
 .icon-circle-arrow-down {
   background-position: -312px -144px;
+}
+
+.icon-dollar {
+  background-image: url("../images/untitled.png");
 }
 
 .icon-globe {

@@ -65,6 +65,7 @@ margin: 0px;
 <body>
 
 	<?php include('profileModals.php');?>
+	<?php include('reportsDescription.php');?>
 
 			<!--Page-->
 			<?php include('header.php');?>
@@ -79,6 +80,22 @@ margin: 0px;
 					</div>
 					
 			</div>
+			<div class='navbar navbar-inverse'>
+				<div class='navbar-inner'>
+					<h2 class='navbar-text text-center'>Select a Report</h2>
+				</div>
+			</div>
+			
+			<div class='row-fluid'>
+					<div class='well span6 offset3 pagination-centered'>
+					<h3>Business Reports</h3>
+					<a href='#dailyR' role='button' class='btn btn-large btn-success span12' data-toggle='modal'><p>Daily Reports</p></a><br>
+					<a href='#weeklyR' role='button' class='btn btn-large btn-success span12' data-toggle='modal'><p>Weekly Reports</p></a><br>
+					<a href='#monthlyR' role='button' class='btn btn-large btn-success span12' data-toggle='modal'><p>Monthly Reports</p></a><br>
+					</div>
+					
+			</div>
+			
 		</div>
 	</div>
 

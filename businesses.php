@@ -3,6 +3,11 @@
 <title>Customer Profiler</title>
 <?php include('include.php');?>
 <script>
+function search()
+	{
+		searchQuery=document.getElementById('searchbar').value;
+		window.location.href = 'businesses.php?cluster=1&page=1&search='+searchQuery;
+	}
 function getUrlVars() {
 		var map = {};
 		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -21,7 +26,7 @@ function getUrlVars() {
 
 	function startIframe()
 	{
-		updateIframe(getUrlVars()['cluster'], getUrlVars()['page'], 'stars', getUrlVars()['search']);
+		updateIframe(getUrlVars()['cluster'], getUrlVars()['page'], 'customer_first_name', getUrlVars()['search']);
 		document.getElementById('currPage').innerHTML=getUrlVars()['page'];
 	}
 
@@ -114,7 +119,19 @@ label {
 <?php include('navModals.php');?>
 
 			<?php include('header2.php');?>
-			
+			<div class='row-fluid' id='profile'>
+				<table class='table table-bordered span10 offset1'>
+				<tr>
+					<td class='span3'>
+						<strong>Sort Results By:</strong>
+					</td>
+					<td class='span9'>
+						<a class='btn btn-small' onclick='changeSort("customer_first_name");'>first name</a>
+						<a class='btn btn-small' onclick='changeSort("customer_last_name");'>last name</a>
+						<a class='btn btn-small' onclick='changeSort("town_city");'>city</a>
+					</td>
+			</table>
+		</div>
 		<div class='row-fluid'>
 		   <iframe id='theIframe' 
 		   		   class="span10 offset1"

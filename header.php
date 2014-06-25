@@ -8,7 +8,7 @@
 						<td>
 							<h1>SMU Hack-a-Week 2014</h1>
 						</td>
-						<td rowspan='3'>
+						<td rowspan='2'>
 							
 							
 								</table>
@@ -27,8 +27,10 @@
 				</table>
 				<br>
 			</div>
+			<div class='container'>
 			<div class='navbar navbar-inverse'>
 				<div class='navbar-inner'>
 					<h2 class='navbar-text text-center'>Select a Customer Profile</h2>
+				</div>
 				</div>
 			</div>

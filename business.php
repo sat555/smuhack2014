@@ -35,7 +35,7 @@ function toggleChecked( id ){
 	
 	function startIframe()
 	{
-		updateIframe(getUrlVars()['id'], 1, 'stars', '1234567');
+		updateIframe(getUrlVars()['id'], 1, 'customer_first_name', '1234567');
 		document.getElementById('currPage').innerHTML=1;
 	}
 
@@ -169,7 +169,7 @@ label {
 		<?php
 		$id=$_GET["id"];
 
-				$cmd="select * from Customers join customerCluster join clusterInfo on (Customers.customer_id=customerCluster.customer_id and customerCluster.cluster=clusterInfo.cluster_no) where Customers.customer_id='$id'";
+				$cmd="select * from Customers, summary join customerCluster join clusterInfo join summary on (Customers.customer_id=customerCluster.customer_id and customerCluster.cluster=clusterInfo.cluster_no and Customers.customer_id = summary.id) where Customers.customer_id='$id'";
 				$result = mysql_query($cmd)
         or die(mysql_error());
 
@@ -182,6 +182,10 @@ label {
 				$address=$row['address'];
 				$city=$row['town_city'];
 				$prov=$row['county'];
+				$profit=$row['profit'];
+				$spending=$row['spending'];
+				$visits=$row['visits'];
+				$products=$row['products'];
 				
 				
 				echo "<table class='table table-bordered span10 offset1'>
@@ -197,9 +201,12 @@ label {
 								email: $email</br>
 								phone: $phone</br>
 								province: $prov</br>
+								city: $city</br>
+								Address: $address</br>
 							</strong>
-							<p>city: $city
-								<br/> Address: $address
+							<p>Visits: $visits
+								<br/> Spending: $spending
+								<br/> Products: $products
 							</p>
 						</div>
 					</td>

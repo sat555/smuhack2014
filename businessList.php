@@ -29,11 +29,12 @@
 		
 	}
 	</style>
+	 
 </head>
 <body>
 	<?php include('db.php');?>
 	<?php 
-
+  $i=1;
 	$cluster=$_GET["cluster"];
 	$page=$_GET["page"];
 	$offset=(10*$page)-10;
@@ -46,7 +47,7 @@ if($search=="")
 	{
 		if($user_id=="")
 		{
-	$cmd="select * from Customers join customerCluster join clusterInfo on (Customers.customer_id=customerCluster.customer_id and customerCluster.cluster=clusterInfo.cluster_no) where clusterInfo.cluster_no=$cluster limit $offset,10";
+	$cmd="select * from Customers join customerCluster join clusterInfo on (Customers.customer_id=customerCluster.customer_id and customerCluster.cluster=clusterInfo.cluster_no) where clusterInfo.cluster_no=$cluster order by $sort asc limit $offset,10";
 		}
 		
 		else
@@ -101,12 +102,35 @@ if($search=="")
 				$lastname=$row['customer_last_name'];
 				$email=$row['email_address'];
 				$phone=$row['phone_number'];
+				$cid=$row['customer_id'];
 				$starIcons="";
 				$address=$row['address'];
 				$city=$row['town_city'];
 				$prov=$row['county'];
 		$profile=$row['title'];
-		$cluster=$row['cluster'];
+		
+		$profit="";
+				$spending="";
+				$visits="";
+				$products="";
+		
+		
+		$sql="select * from summary WHERE id = '$cid';";
+		$result2 = mysql_query($sql)
+        or die(mysql_error());
+		while ($row2 = mysql_fetch_assoc($result2)) {
+		$profit=$row2['profit'];
+				$spending=$row2['spending'];
+				$visits=$row2['visits'];
+				$products=$row2['products'];
+				}
+				$sql2="select * from customerCluster WHERE customer_id = '$cid';";
+		$result3 = mysql_query($sql2)
+        or die(mysql_error());
+		while ($row3 = mysql_fetch_assoc($result3)) {
+		
+				$clust=$row3['cluster'];
+				}
 		
    		echo 	"<tr>
 			<td class='span4'>
@@ -117,14 +141,29 @@ if($search=="")
 								email: $email</br>
 								phone: $phone</br>
 								province: $prov</br>
+								City: $city</br>
+					      Address: $address</br>
 					</strong>
-					<a href='#business$cluster' class='btn btn-small btn-danger' data-dismiss='modal' data-toggle='modal'>View Profile</a>
+					
 				</div>
 			</td>
 			<td class='span9'>
 				<p>
-					<strong>City:</strong>$city</br>
-					<strong>Address:</strong>$address
+					<strong>Spending Rating: </strong>";
+					$rating="";
+					
+					if($spending <=100) $rating="$";
+elseif($spending >=101 && $spending <=200) $rating="$$";
+elseif($spending >=201 && $spending <=500) $rating="$$$";
+elseif($spending >=501 && $spending <=1000) $rating="$$$$";
+elseif($spending >=1001) $rating="$$$$$";
+          
+					echo $rating;
+					echo "</br>
+					<strong>Spending: </strong>$spending</br>
+					<strong>Visits: </strong>$visits</br>
+					<strong>Products: </strong>$products</br>
+					<strong>Profit: </strong>$profit</br>
 				</p>
 				
 			</td>
